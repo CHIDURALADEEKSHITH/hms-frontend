@@ -1,0 +1,1440 @@
+/* =========================================
+   BED MANAGEMENT MODULE
+   ========================================= */
+
+.bed-layout {
+    min-height: 100vh;
+    display: flex;
+    background: #f4f8fb;
+    color: #1e293b;
+}
+
+
+/* =========================================
+   SIDEBAR
+   ========================================= */
+
+.bed-sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #083344, #0f4c5c);
+    color: white;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+}
+
+.bed-logo {
+    height: 82px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.bed-logo-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: #14b8a6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+}
+
+.bed-logo h2 {
+    margin: 0;
+    font-size: 21px;
+}
+
+.bed-logo span {
+    font-size: 11px;
+    opacity: 0.75;
+}
+
+.bed-nav {
+    padding: 20px 12px;
+    flex: 1;
+}
+
+.bed-nav-item {
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: rgba(255,255,255,0.78);
+    padding: 13px 15px;
+    border-radius: 9px;
+    margin-bottom: 6px;
+    text-align: left;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.bed-nav-item:hover {
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+.bed-nav-item.active {
+    background: #14b8a6;
+    color: white;
+}
+
+.bed-sidebar-bottom {
+    padding: 12px;
+}
+
+.bed-nav-item.logout:hover {
+    background: rgba(239,68,68,0.2);
+}
+
+
+/* =========================================
+   MAIN
+   ========================================= */
+
+.bed-main {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    min-height: 100vh;
+    padding: 30px 35px;
+}
+
+.bed-main-content {
+    flex: 1;
+    min-width: 0;
+    min-height: 100vh;
+    width: calc(100% - 250px);
+    margin-left: 250px;
+    padding: 30px 35px;
+    box-sizing: border-box;
+}
+
+.bed-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.bed-header h1 {
+    margin: 0 0 6px;
+    color: #0f3d4c;
+    font-size: 29px;
+}
+
+.bed-header p {
+    margin: 0;
+    color: #64748b;
+}
+
+.bed-user-info {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.bed-user-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #0f766e;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.bed-user-info strong {
+    display: block;
+    font-size: 14px;
+}
+
+.bed-user-info span {
+    display: block;
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+
+/* =========================================
+   STATISTICS
+   ========================================= */
+
+.bed-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.bed-stat-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 15px rgba(15,23,42,0.04);
+}
+
+.bed-stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+}
+
+.bed-stat-icon.ward {
+    background: #ecfeff;
+}
+
+.bed-stat-icon.room {
+    background: #eff6ff;
+}
+
+.bed-stat-icon.available {
+    background: #ecfdf5;
+}
+
+.bed-stat-icon.occupied {
+    background: #fff7ed;
+}
+
+.bed-stat-card span {
+    display: block;
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 5px;
+}
+
+.bed-stat-card h2 {
+    margin: 0;
+    font-size: 25px;
+    color: #0f3d4c;
+}
+
+
+/* =========================================
+   WELCOME
+   ========================================= */
+
+.bed-welcome {
+    background: linear-gradient(135deg, #0f766e, #0f4c5c);
+    color: white;
+    border-radius: 17px;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(15,118,110,0.18);
+}
+
+.bed-small-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    opacity: 0.75;
+    margin-bottom: 8px;
+}
+
+.bed-welcome h2 {
+    margin: 0 0 9px;
+    font-size: 25px;
+}
+
+.bed-welcome p {
+    margin: 0;
+    max-width: 620px;
+    line-height: 1.6;
+    opacity: 0.88;
+}
+
+.bed-welcome-icon {
+    font-size: 70px;
+    opacity: 0.85;
+}
+
+
+/* =========================================
+   ACTION CARDS
+   ========================================= */
+
+.bed-actions-section h2 {
+    color: #0f3d4c;
+    font-size: 20px;
+    margin-bottom: 17px;
+}
+
+.bed-action-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.bed-action-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 22px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.bed-action-card:hover {
+    transform: translateY(-3px);
+    border-color: #14b8a6;
+    box-shadow: 0 10px 25px rgba(15,23,42,0.08);
+}
+
+.bed-action-icon {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.bed-action-card h3 {
+    margin: 0 0 8px;
+    font-size: 17px;
+    color: #0f3d4c;
+}
+
+.bed-action-card p {
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.5;
+    min-height: 42px;
+}
+
+.bed-action-card button {
+    border: none;
+    background: transparent;
+    color: #0f766e;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0;
+}
+
+
+/* =========================================
+   INNER PAGES
+   ========================================= */
+
+.bed-page {
+    min-height: 100vh;
+    background: #f4f8fb;
+    padding: 30px 35px;
+}
+
+.bed-main.bed-subpage-main {
+    padding: 0;
+}
+
+.bed-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 25px;
+}
+
+.bed-page-header h1 {
+    margin: 8px 0 5px;
+    color: #0f3d4c;
+    font-size: 28px;
+}
+
+.bed-page-header p {
+    margin: 0;
+    color: #64748b;
+}
+
+.bed-back-button {
+    border: none;
+    background: transparent;
+    padding: 0;
+    color: #0f766e;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.bed-primary-button {
+    border: none;
+    background: #0f766e;
+    color: white;
+    padding: 11px 17px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.bed-primary-button:hover {
+    background: #0d625c;
+}
+
+.bed-refresh-button {
+    border: 1px solid #cbd5e1;
+    background: white;
+    color: #334155;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.bed-refresh-button:hover {
+    border-color: #14b8a6;
+    color: #0f766e;
+}
+
+
+/* =========================================
+   FORM
+   ========================================= */
+
+.bed-form-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 22px;
+    margin-bottom: 20px;
+}
+
+.bed-form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.bed-form-header h2 {
+    margin: 0;
+    color: #0f3d4c;
+    font-size: 19px;
+}
+
+.bed-form-header button {
+    border: none;
+    background: #f1f5f9;
+    width: 32px;
+    height: 32px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.bed-form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.bed-form-group {
+    margin-bottom: 16px;
+}
+
+.bed-form-group label {
+    display: block;
+    color: #334155;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 7px;
+}
+
+.bed-form-group input,
+.bed-form-group select,
+.bed-form-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 11px 12px;
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+    background: white;
+}
+
+.bed-form-group input:focus,
+.bed-form-group select:focus,
+.bed-form-group textarea:focus {
+    border-color: #14b8a6;
+    box-shadow: 0 0 0 3px rgba(20,184,166,0.1);
+}
+
+.bed-submit-button {
+    width: 100%;
+    border: none;
+    background: #0f766e;
+    color: white;
+    padding: 13px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.bed-submit-button:hover {
+    background: #0d625c;
+}
+
+
+/* =========================================
+   TABLE
+   ========================================= */
+
+.bed-table-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.bed-table-header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.bed-table-header h2 {
+    margin: 0 0 5px;
+    font-size: 18px;
+    color: #0f3d4c;
+}
+
+.bed-table-header span {
+    color: #64748b;
+    font-size: 12px;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.bed-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.bed-table th {
+    text-align: left;
+    padding: 13px 17px;
+    background: #f8fafc;
+    color: #64748b;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.bed-table td {
+    padding: 15px 17px;
+    border-top: 1px solid #f1f5f9;
+    font-size: 13px;
+    color: #475569;
+}
+
+.bed-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+
+/* =========================================
+   STATUS
+   ========================================= */
+
+.bed-status {
+    display: inline-flex;
+    padding: 5px 9px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.bed-status.available {
+    background: #ecfdf5;
+    color: #047857;
+}
+
+.bed-status.occupied {
+    background: #fff7ed;
+    color: #c2410c;
+}
+
+.bed-status.reserved {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.bed-status.maintenance {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.bed-category {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 6px;
+    background: #f0fdfa;
+    color: #0f766e;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.status-select {
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    padding: 7px;
+    font-size: 11px;
+    background: white;
+    outline: none;
+}
+
+.table-action {
+    border: none;
+    padding: 8px 12px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.table-action.primary {
+    background: #0f766e;
+    color: white;
+}
+
+.table-action.primary:hover {
+    background: #0d625c;
+}
+
+.table-action.danger {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.table-action.danger:hover {
+    background: #fecaca;
+}
+
+
+/* =========================================
+   FILTER
+   ========================================= */
+
+.bed-filter-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    padding: 17px;
+    border-radius: 13px;
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.bed-search {
+    flex: 1;
+    max-width: 550px;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 0 13px;
+    color: #64748b;
+}
+
+.bed-search input {
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 12px 0;
+    font-size: 14px;
+}
+
+.bed-filter-card select {
+    min-width: 180px;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    padding: 0 12px;
+    outline: none;
+    color: #334155;
+    background: white;
+}
+
+
+/* =========================================
+   EMPTY / LOADING
+   ========================================= */
+
+.bed-loading {
+    padding: 60px 20px;
+    text-align: center;
+    color: #64748b;
+}
+
+.bed-empty {
+    padding: 65px 25px;
+    text-align: center;
+}
+
+.bed-empty > div {
+    font-size: 45px;
+    margin-bottom: 12px;
+}
+
+.bed-empty h3 {
+    margin: 0 0 8px;
+    color: #334155;
+}
+
+.bed-empty p {
+    margin: 0;
+    color: #64748b;
+    font-size: 13px;
+}
+
+
+/* =========================================
+   WARD CARDS
+   ========================================= */
+
+.bed-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    padding: 20px;
+}
+
+.ward-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: 0.2s;
+}
+
+.ward-card:hover {
+    border-color: #14b8a6;
+    transform: translateY(-2px);
+}
+
+.ward-card-icon {
+    padding: 20px;
+    font-size: 30px;
+    background: #f0fdfa;
+}
+
+.ward-card-content {
+    padding: 18px;
+}
+
+.ward-card-content h3 {
+    margin: 0 0 8px;
+    color: #0f3d4c;
+}
+
+.ward-card-content p {
+    color: #64748b;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.ward-card-footer {
+    padding: 11px 18px;
+    border-top: 1px solid #e2e8f0;
+    font-size: 10px;
+    color: #94a3b8;
+}
+
+
+/* =========================================
+   ALLOCATION
+   ========================================= */
+
+.allocation-card,
+.transfer-card {
+    background: white;
+    border: 1px solid #99f6e4;
+    border-radius: 14px;
+    padding: 22px;
+    margin-bottom: 20px;
+    background: #f0fdfa;
+}
+
+.allocation-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.allocation-card h2,
+.transfer-card h2 {
+    margin: 0 0 5px;
+    color: #0f3d4c;
+}
+
+.allocation-card p,
+.transfer-card p {
+    margin: 0;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.allocation-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.allocation-controls select {
+    min-width: 270px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 11px;
+    background: white;
+}
+
+.bed-cancel-button {
+    border: 1px solid #cbd5e1;
+    background: white;
+    color: #475569;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+
+/* =========================================
+   TRANSFER
+   ========================================= */
+
+.transfer-card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.transfer-card-header > button {
+    border: none;
+    background: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.transfer-card .bed-form-grid {
+    grid-template-columns: 1fr 1fr;
+}
+
+.transfer-card .bed-submit-button {
+    margin-top: 5px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 1200px) {
+
+    .bed-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bed-action-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bed-card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .allocation-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+}
+
+@media (max-width: 850px) {
+
+    .bed-sidebar {
+        width: 210px;
+    }
+
+    .bed-main-content {
+        width: calc(100% - 210px);
+        margin-left: 210px;
+        padding: 22px;
+    }
+
+    .bed-main {
+        margin-left: 210px;
+        width: calc(100% - 210px);
+        padding: 22px;
+    }
+
+    .bed-page {
+        padding: 22px;
+    }
+
+    .bed-form-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .bed-card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .allocation-controls {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .allocation-controls select {
+        flex: 1;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .bed-layout {
+        display: block;
+    }
+
+    .bed-sidebar {
+        position: relative;
+        width: 100%;
+        min-height: auto;
+    }
+
+    .bed-main-content {
+        width: auto;
+        min-height: auto;
+        margin-left: 0;
+        padding: 22px 18px;
+    }
+
+    .bed-main {
+        margin-left: 0;
+        width: auto;
+    }
+
+    .bed-stats,
+    .bed-action-grid,
+    .bed-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bed-header,
+    .bed-page-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .bed-filter-card {
+        flex-direction: column;
+    }
+
+    .bed-search {
+        max-width: none;
+    }
+
+    .bed-filter-card select {
+        height: 42px;
+    }
+
+    .allocation-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .allocation-controls select {
+        width: 100%;
+    }
+
+    .transfer-card .bed-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* BED AVAILABILITY DASHBOARD */
+
+.bed-availability-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 30px 35px;
+    box-sizing: border-box;
+}
+
+.bed-availability-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.bed-availability-header h2 {
+    margin: 0 0 7px;
+    color: #1e293b;
+}
+
+.bed-availability-header p {
+    color: #64748b;
+    margin: 0;
+}
+
+.bed-refresh-btn {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 11px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.bed-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.bed-summary-card {
+    background: white;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+    border-left: 5px solid #64748b;
+}
+
+.bed-summary-card span {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.bed-summary-card h2 {
+    font-size: 30px;
+    margin: 12px 0 6px;
+    color: #1e293b;
+}
+
+.bed-summary-card small {
+    color: #94a3b8;
+}
+
+.bed-summary-card.available {
+    border-left-color: #16a34a;
+}
+
+.bed-summary-card.occupied {
+    border-left-color: #dc2626;
+}
+
+.bed-summary-card.maintenance {
+    border-left-color: #d97706;
+}
+
+.bed-occupancy-section,
+.bed-ward-section {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+}
+
+.bed-occupancy-section h3,
+.bed-ward-section h3 {
+    margin: 0 0 20px;
+    color: #1e293b;
+}
+
+.bed-occupancy-info {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.bed-occupancy-info strong {
+    font-size: 28px;
+    color: #2563eb;
+}
+
+.bed-occupancy-info span {
+    color: #64748b;
+}
+
+.bed-progress-track {
+    width: 100%;
+    height: 13px;
+    background: #e2e8f0;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.bed-progress-fill {
+    height: 100%;
+    background: #2563eb;
+    border-radius: 20px;
+    transition: width 0.4s ease;
+}
+
+.bed-progress-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.bed-ward-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bed-ward-heading span {
+    background: #eff6ff;
+    color: #2563eb;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.bed-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.bed-availability-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+.bed-availability-table th,
+.bed-availability-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.bed-availability-table th {
+    color: #64748b;
+    background: #f8fafc;
+    font-size: 13px;
+}
+
+.bed-availability-table td {
+    color: #334155;
+    font-size: 14px;
+}
+
+.bed-status {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.bed-status.available {
+    color: #15803d;
+    background: #dcfce7;
+}
+
+.bed-status.occupied {
+    color: #b91c1c;
+    background: #fee2e2;
+}
+
+.bed-status.maintenance {
+    color: #b45309;
+    background: #fef3c7;
+}
+
+.bed-no-data,
+.bed-availability-loading {
+    color: #64748b;
+    padding: 25px;
+    text-align: center;
+}
+
+.bed-availability-error {
+    background: #fee2e2;
+    color: #b91c1c;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.bed-availability-error button {
+    margin-left: 12px;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+    .bed-summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bed-availability-page {
+        padding: 26px 24px;
+    }
+}
+
+@media (max-width: 600px) {
+    .bed-summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bed-availability-page {
+        min-height: auto;
+        padding: 22px 18px;
+    }
+
+    .bed-availability-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+/* ================= WARD MANAGEMENT ================= */
+
+.ward-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 22px;
+    margin-top: 20px;
+}
+
+.ward-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+    transition: 0.3s ease;
+}
+
+.ward-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.09);
+}
+
+.ward-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
+
+.ward-card-header h3 {
+    font-size: 19px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+}
+
+.ward-card-header span {
+    font-size: 28px;
+    background: #eff6ff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.ward-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.ward-stats > div {
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.ward-stats h4 {
+    font-size: 23px;
+    color: #2563eb;
+    margin: 0 0 5px;
+    font-weight: 700;
+}
+
+.ward-stats p {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0;
+}
+
+/* ================= WARD FORM ================= */
+
+.bed-form-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 25px;
+    margin: 22px 0;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+}
+
+.bed-form-card h2 {
+    font-size: 20px;
+    color: #1e293b;
+    margin: 0 0 22px;
+}
+
+.bed-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-bottom: 20px;
+    max-width: 500px;
+}
+
+.bed-form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+}
+
+.bed-form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: 0.2s ease;
+}
+
+.bed-form-group input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* ================= WARD BUTTONS ================= */
+
+.bed-primary-btn {
+    background: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.bed-primary-btn:hover {
+    background: #1d4ed8;
+}
+
+.bed-secondary-btn {
+    background: #ffffff;
+    color: #2563eb;
+    border: 1px solid #2563eb;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.bed-secondary-btn:hover {
+    background: #eff6ff;
+}
+
+/* ================= SECTION HEADER ================= */
+
+.bed-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px 0 15px;
+}
+
+.bed-section-header h2 {
+    font-size: 21px;
+    color: #1e293b;
+    margin: 0;
+}
+
+/* ================= MESSAGES ================= */
+
+.success-message {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 15px 0;
+    font-size: 14px;
+}
+
+.error-message {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 15px 0;
+    font-size: 14px;
+}
+
+.bed-empty-state {
+    background: #ffffff;
+    border: 1px dashed #cbd5e1;
+    border-radius: 12px;
+    padding: 45px 20px;
+    text-align: center;
+    color: #64748b;
+    font-size: 15px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+    .ward-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bed-page-header {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .bed-section-header {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .bed-form-card {
+        padding: 18px;
+    }
+}

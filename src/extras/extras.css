@@ -1,0 +1,137 @@
+/* ===== extra front-end features ===== */
+
+/* ---- dock ---- */
+.xdock {
+    position: fixed; right: 18px; bottom: 18px; z-index: 900;
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end;
+    max-width: calc(100vw - 36px);
+}
+.xdock-clock {
+    display: flex; flex-direction: column; align-items: flex-end; line-height: 1.15;
+    padding: 7px 14px;
+    background: var(--t-maroon-deep); color: #fff;
+    border-bottom: 3px solid var(--t-gold); border-radius: 4px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, .22);
+}
+.xdock-clock b { font-family: Fraunces, Georgia, serif; font-size: 17px; font-weight: 600; }
+.xdock-clock span { font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--t-gold); }
+
+.xdock-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    height: 42px; padding: 0 14px;
+    background: var(--t-surface); color: var(--t-maroon-ink);
+    border: 1px solid var(--t-line-strong); border-radius: 4px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, .14);
+    font-size: 12.5px; font-weight: 700; letter-spacing: .04em; cursor: pointer;
+}
+.xdock-btn:hover { background: var(--t-maroon); border-color: var(--t-maroon); color: #fff; }
+.xdock-btn em { font-style: normal; }
+.xdock-btn .xi { font-size: 17px; line-height: 1; }
+.xdock-btn kbd {
+    padding: 2px 6px; font: inherit; font-size: 10px; letter-spacing: .06em;
+    border: 1px solid currentColor; border-radius: 3px; opacity: .6;
+}
+.xdock-sos { background: #b3261e; border-color: #b3261e; color: #fff; }
+.xdock-sos:hover { background: #8d1c16; border-color: #8d1c16; }
+.xdock-top { width: 42px; padding: 0; justify-content: center; }
+.xdock-wrap { position: relative; }
+
+/* ---- theme popover ---- */
+.xpop {
+    position: absolute; right: 0; bottom: 52px; width: 230px; padding: 12px;
+    background: var(--t-surface); border: 1px solid var(--t-line-strong);
+    border-top: 3px solid var(--t-maroon); border-radius: 4px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, .25);
+}
+.xpop h4 { margin: 0 0 8px; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--t-muted); font-family: "DM Sans", sans-serif; }
+.xpal {
+    display: flex; align-items: center; gap: 10px; width: 100%;
+    padding: 9px 8px; margin-bottom: 2px;
+    background: transparent; color: var(--t-text);
+    border: 1px solid transparent; border-radius: 4px;
+    font-size: 13px; font-weight: 600; text-align: left; cursor: pointer;
+}
+.xpal:hover { background: var(--t-hover); }
+.xpal.on { border-color: var(--t-maroon); background: var(--t-hover); }
+.xpal i { margin-left: auto; font-style: normal; color: var(--t-maroon); }
+.xsw { width: 26px; height: 26px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--t-line-strong); }
+
+/* ---- modals ---- */
+.xmodal-bg {
+    position: fixed; inset: 0; z-index: 1000;
+    display: flex; align-items: flex-start; justify-content: center;
+    padding: 12vh 16px 16px;
+    background: rgba(20, 8, 14, .55); backdrop-filter: blur(2px);
+}
+.xcmd, .xsos {
+    width: 100%; max-width: 560px;
+    background: var(--t-surface); border: 1px solid var(--t-line-strong);
+    border-top: 4px solid var(--t-maroon);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, .4);
+}
+.xcmd input {
+    width: 100%; padding: 18px 20px; font-size: 16px;
+    background: transparent !important; border: 0 !important; border-bottom: 1px solid var(--t-line) !important;
+    border-radius: 0 !important; box-shadow: none !important; color: var(--t-text);
+}
+.xcmd ul { list-style: none; margin: 0; padding: 6px; max-height: 340px; overflow-y: auto; }
+.xcmd li {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    padding: 11px 14px; border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--t-text);
+}
+.xcmd li small { color: var(--t-muted); font-weight: 400; font-size: 12px; }
+.xcmd li.on { background: var(--t-maroon); color: #fff; }
+.xcmd li.on small { color: var(--t-gold-soft); }
+.xcmd .xempty { cursor: default; color: var(--t-muted); }
+.xcmd footer { padding: 9px 16px; border-top: 1px solid var(--t-line); font-size: 11px; letter-spacing: .06em; color: var(--t-muted); }
+
+.xsos { max-width: 480px; border-top-color: #b3261e; }
+.xsos header { display: flex; align-items: center; gap: 14px; padding: 18px 20px; border-bottom: 1px solid var(--t-line); }
+.xsos header div { flex: 1; }
+.xsos h3 { margin: 0; font-size: 20px; }
+.xsos p { margin: 2px 0 0; font-size: 12.5px; color: var(--t-muted); }
+.xsos-badge { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: #b3261e; color: #fff; font-size: 20px; }
+.xsos header button { border: 0; background: none; font-size: 26px; line-height: 1; color: var(--t-muted); cursor: pointer; }
+.xsos ul { list-style: none; margin: 0; padding: 6px 20px 14px; }
+.xsos li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 0; border-bottom: 1px solid var(--t-line); }
+.xsos li:last-child { border-bottom: 0; }
+.xsos li strong { display: block; font-size: 14.5px; color: var(--t-maroon-ink); }
+.xsos li small { color: var(--t-muted); font-size: 12px; }
+.xsos li a { padding: 8px 14px; border: 1px solid #b3261e; color: #b3261e; border-radius: 4px; font-weight: 700; font-size: 13.5px; white-space: nowrap; }
+.xsos li a:hover { background: #b3261e; color: #fff; }
+
+/* ---- password field ---- */
+.pw-field { width: 100%; }
+.pw-box { position: relative; display: flex; }
+.pw-box input { width: 100%; padding-right: 64px !important; }
+.pw-toggle {
+    position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+    padding: 5px 9px; background: transparent; border: 0;
+    color: var(--t-maroon); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; cursor: pointer;
+}
+.pw-toggle:hover { color: var(--t-maroon-ink); text-decoration: underline; }
+.pw-meter { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+.pw-bars { display: flex; gap: 4px; flex: 1; }
+.pw-bars span { height: 4px; flex: 1; background: var(--t-line); }
+.pw-meter[data-score="1"] .pw-bars .on { background: #c0392b; }
+.pw-meter[data-score="2"] .pw-bars .on { background: #d68910; }
+.pw-meter[data-score="3"] .pw-bars .on { background: #7d9a2a; }
+.pw-meter[data-score="4"] .pw-bars .on { background: #1e8449; }
+.pw-meter small { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--t-muted); }
+
+/* ---- print: clean paper copy ---- */
+@media print {
+    .xdock, .xmodal-bg, body aside, body .common-navbar, body .common-sidebar { display: none !important; }
+    body, html { background: #fff !important; }
+    body :is([class$="-main"], [class$="-content"]) { max-width: 100% !important; padding: 0 !important; }
+    body :is([class$="-table-card"], [class$="-section"], [class$="-card"]) { box-shadow: none !important; break-inside: avoid; }
+}
+@media (max-width: 640px) {
+    .xdock-btn em, .xdock-btn kbd { display: none; }
+    .xdock-btn { width: 42px; padding: 0; justify-content: center; }
+    .xdock { right: 10px; bottom: 10px; }
+}
+
+/* tools popover is a little wider than the theme one */
+.xpop-tools { width: 270px; }
+.xpop-tools .xpal .xi { width: 22px; text-align: center; }

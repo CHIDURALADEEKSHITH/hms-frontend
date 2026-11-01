@@ -1,0 +1,69 @@
+export const ROLES = {
+    ADMIN: "ADMIN",
+    DOCTOR: "DOCTOR",
+    NURSE: "NURSE",
+    RECEPTIONIST: "RECEPTIONIST",
+    PATIENT: "PATIENT",
+    PHARMACIST: "PHARMACIST",
+    LAB_INCHARGE: "LAB_INCHARGE",
+    BED_INCHARGE: "BED_INCHARGE"
+};
+
+export const ROLE_NAMES = {
+    ADMIN: "Administrator",
+    DOCTOR: "Doctor",
+    NURSE: "Nurse",
+    RECEPTIONIST: "Receptionist",
+    PATIENT: "Patient",
+    PHARMACIST: "Pharmacist",
+    LAB_INCHARGE: "Lab In-Charge",
+    BED_INCHARGE: "Bed In-Charge"
+};
+
+export const APPOINTMENT_STATUS = {
+    BOOKED: "BOOKED",
+    CONFIRMED: "CONFIRMED",
+    CHECKED_IN: "CHECKED_IN",
+    COMPLETED: "COMPLETED",
+    CANCELLED: "CANCELLED",
+    RESCHEDULED: "RESCHEDULED",
+    NO_SHOW: "NO_SHOW"
+};
+
+export const PAYMENT_STATUS = {
+    PENDING: "PENDING",
+    PAID: "PAID",
+    FAILED: "FAILED",
+    REFUNDED: "REFUNDED"
+};
+
+export const BED_STATUS = {
+    AVAILABLE: "AVAILABLE",
+    OCCUPIED: "OCCUPIED",
+    RESERVED: "RESERVED",
+    MAINTENANCE: "MAINTENANCE"
+};
+
+export const ADMISSION_STATUS = {
+    ACTIVE: "ACTIVE",
+    DISCHARGED: "DISCHARGED",
+    TRANSFERRED: "TRANSFERRED"
+};
+
+export const LAB_STATUS = {
+    ORDERED: "ORDERED",
+    PENDING_PAYMENT: "PENDING_PAYMENT",
+    PAID: "PAID",
+    PROCESSING: "PROCESSING",
+    COMPLETED: "COMPLETED"
+};
+
+export const STAFF_STATUS = {
+    PENDING: "PENDING",
+    APPROVED: "APPROVED",
+    REJECTED: "REJECTED",
+    ACTIVE: "ACTIVE",
+    INACTIVE: "INACTIVE"
+};
+
+export const API_BASE_URL = "http://localhost:9999";

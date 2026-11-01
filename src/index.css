@@ -1,0 +1,1077 @@
+/* =====================================================================
+   THILAK HOSPITAL — design system
+   ---------------------------------------------------------------------
+   Layout   : top navigation bar (no left sidebar), full-width pages
+   Palette  : ivory paper + deep maroon + antique gold
+   Type     : Fraunces (serif headings) + DM Sans (body)
+   Shapes   : flat, square-ish, hairline borders, no gradients
+   Grids    : joined "ledger" stat strips, list-row actions
+   ===================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap");
+
+:root {
+    --t-maroon: #8c1d40;
+    --t-maroon-deep: #4a0f22;
+    --t-maroon-ink: #3a0b1a;
+    --t-gold: #c79a3b;
+    --t-gold-soft: #f3e6c4;
+    --t-paper: #f8f4ec;
+    --t-surface: #fffdf8;
+    --t-line: #e4d9c4;
+    --t-line-strong: #cdbd9f;
+    --t-text: #2b2220;
+    --t-muted: #7d6e66;
+    --t-radius: 6px;
+    --t-shadow: 0 1px 0 rgba(74, 15, 34, .06);
+    --t-nav-h: 64px;
+    --t-hover: #fbf5e8;
+    --t-input: #fffaf0;
+    --t-zebra: #fcf8ef;
+    --t-zebra-hover: #f6ecd2;
+    --t-ring: rgba(140, 29, 64, .14);
+    --t-pattern: rgba(140, 29, 64, .035);
+
+    font-family: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--t-text);
+    background: var(--t-paper);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+html { margin: 0; padding: 0; scroll-behavior: smooth; }
+body {
+    margin: 0;
+    padding: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    font-family: "DM Sans", system-ui, sans-serif;
+    color: var(--t-text);
+    background: var(--t-paper);
+    -webkit-font-smoothing: antialiased;
+}
+button, input, select, textarea { font-family: inherit; }
+button { transition: .18s ease; }
+button:disabled { opacity: .55; cursor: not-allowed; }
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+#root { min-height: 100vh; }
+::selection { background: var(--t-gold-soft); color: var(--t-maroon-ink); }
+* { scrollbar-width: thin; scrollbar-color: var(--t-line-strong) transparent; }
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-thumb { background: var(--t-line-strong); border-radius: 0; }
+
+body h1, body h2, body h3 {
+    font-family: Fraunces, Georgia, "Times New Roman", serif;
+    letter-spacing: -.01em;
+    color: var(--t-maroon-ink);
+}
+
+/* =====================================================================
+   1. PAGE SHELL  →  column layout with a top bar
+   ===================================================================== */
+body :is(.admin-layout, .doctor-layout, .lab-layout, .bed-layout, .receptionist-layout,
+         .nurse-page, .patient-page, .pharmacist-page, .receptionist-page) {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh;
+    width: 100% !important;
+    background: var(--t-paper) !important;
+    color: var(--t-text);
+}
+
+/* the former sidebar becomes the top bar */
+body aside {
+    position: sticky !important;
+    inset: 0 auto auto 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 200 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: var(--t-nav-h) !important;
+    min-height: var(--t-nav-h) !important;
+    max-height: var(--t-nav-h);
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 22px;
+    padding: 0 28px !important;
+    background: var(--t-maroon-deep) !important;
+    background-image: none !important;
+    color: #f4e9d6 !important;
+    border: 0 !important;
+    border-bottom: 3px solid var(--t-gold) !important;
+    box-shadow: 0 6px 18px rgba(58, 11, 26, .18) !important;
+    overflow: visible;
+}
+
+/* brand block */
+body aside :is([class$="-logo"], .sidebar-brand) {
+    display: flex !important;
+    align-items: center;
+    gap: 11px;
+    flex: 0 0 auto;
+    min-height: 0 !important;
+    padding: 0 22px 0 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-right: 1px solid rgba(243, 230, 196, .22) !important;
+}
+body aside :is([class$="-logo"], .sidebar-brand) h2 {
+    margin: 0 !important;
+    color: #fff !important;
+    font-family: Fraunces, Georgia, serif;
+    font-size: 19px !important;
+    font-weight: 600 !important;
+    letter-spacing: .01em;
+    white-space: nowrap;
+}
+body aside :is([class$="-logo"], .sidebar-brand) span {
+    display: block;
+    margin-top: 1px !important;
+    color: var(--t-gold) !important;
+    font-size: 10px !important;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    opacity: 1 !important;
+    white-space: nowrap;
+}
+
+/* monogram — replaces the emoji/cross logos with a serif “T” */
+body :is([class$="-logo-icon"], .logo-icon, .sidebar-brand-icon, .navbar-logo) {
+    position: relative;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 38px !important;
+    height: 38px !important;
+    flex: 0 0 38px !important;
+    font-size: 0 !important;
+    color: transparent !important;
+    background: transparent !important;
+    border: 1.5px solid var(--t-gold) !important;
+    border-radius: 50% !important;
+    box-shadow: none !important;
+}
+body :is([class$="-logo-icon"], .logo-icon, .sidebar-brand-icon, .navbar-logo)::before {
+    content: "T";
+    font-family: Fraunces, Georgia, serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--t-gold);
+}
+
+/* nav strip */
+body aside :is(.admin-menu, .doctor-menu, .nurse-nav, .patient-nav, .lab-nav,
+               .pharmacist-nav, .receptionist-nav, .bed-nav, .sidebar-menu) {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: stretch;
+    gap: 2px !important;
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: auto;
+    overflow-y: hidden !important;
+    scrollbar-width: none;
+}
+body aside :is(.admin-menu, .doctor-menu, .nurse-nav, .patient-nav, .lab-nav,
+               .pharmacist-nav, .receptionist-nav, .bed-nav, .sidebar-menu)::-webkit-scrollbar { display: none; }
+
+body aside :is(.admin-menu-item, .nurse-nav button, .patient-nav button, .doctor-menu-item,
+               .lab-nav-item, .pharmacist-nav button, .receptionist-nav button, .bed-nav-item,
+               .sidebar-item):not(.logout):not(.logout-item) {
+    position: relative;
+    display: flex !important;
+    align-items: center;
+    gap: 7px !important;
+    flex: 0 0 auto;
+    width: auto !important;
+    height: 100%;
+    margin: 0 !important;
+    padding: 0 14px !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    color: rgba(244, 233, 214, .72) !important;
+    font-size: 13px !important;
+    font-weight: 500;
+    letter-spacing: .01em;
+    white-space: nowrap;
+    cursor: pointer;
+    box-shadow: none !important;
+    transform: none !important;
+}
+body aside :is(.admin-menu-item, .nurse-nav button, .patient-nav button, .doctor-menu-item,
+               .lab-nav-item, .pharmacist-nav button, .receptionist-nav button, .bed-nav-item,
+               .sidebar-item):not(.logout):not(.logout-item) span {
+    width: auto !important;
+    flex: 0 0 auto !important;
+    font-size: 13px;
+    filter: grayscale(.4);
+    color: inherit !important;
+}
+body aside :is(.admin-menu-item, .nurse-nav button, .patient-nav button, .doctor-menu-item,
+               .lab-nav-item, .pharmacist-nav button, .receptionist-nav button, .bed-nav-item,
+               .sidebar-item):not(.logout):not(.logout-item):hover {
+    background: rgba(255, 255, 255, .06) !important;
+    color: #fff !important;
+}
+body aside :is(.admin-menu-item, .nurse-nav button, .patient-nav button, .doctor-menu-item,
+               .lab-nav-item, .pharmacist-nav button, .receptionist-nav button, .bed-nav-item,
+               .sidebar-item).active:not(.logout):not(.logout-item) {
+    background: rgba(199, 154, 59, .14) !important;
+    color: var(--t-gold-soft) !important;
+    font-weight: 700;
+}
+body aside :is(.admin-menu-item, .nurse-nav button, .patient-nav button, .doctor-menu-item,
+               .lab-nav-item, .pharmacist-nav button, .receptionist-nav button, .bed-nav-item,
+               .sidebar-item).active:not(.logout):not(.logout-item)::after {
+    content: "";
+    position: absolute;
+    left: 10px; right: 10px; bottom: -3px;
+    height: 3px;
+    background: var(--t-gold-soft);
+}
+
+/* right-hand cluster: user + logout */
+body aside :is([class$="-sidebar-bottom"], .sidebar-bottom) {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 12px;
+    flex: 0 0 auto;
+    margin: 0 0 0 auto !important;
+    padding: 0 0 0 20px !important;
+    border: 0 !important;
+    border-left: 1px solid rgba(243, 230, 196, .22) !important;
+}
+body aside :is(.sidebar-user) {
+    display: flex; align-items: center; gap: 9px;
+    margin: 0; padding: 0; border: 0;
+    background: transparent; box-shadow: none; border-radius: 0;
+}
+body aside .sidebar-user strong { display: block; color: #fff !important; font-size: 12.5px; line-height: 1.2; }
+body aside .sidebar-user span { color: var(--t-gold) !important; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+body aside [class$="-avatar"] {
+    background: var(--t-gold) !important;
+    color: var(--t-maroon-ink) !important;
+    box-shadow: none !important;
+}
+body aside .bed-sidebar-user-name { background: transparent !important; color: var(--t-gold-soft) !important; font-size: 12px; }
+
+body aside :is([class$="-logout"], .logout-item, .sidebar-logout, .logout) {
+    width: auto !important;
+    height: 36px;
+    margin: 0 !important;
+    padding: 0 16px !important;
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    background: transparent !important;
+    color: var(--t-gold-soft) !important;
+    border: 1px solid rgba(243, 230, 196, .5) !important;
+    border-radius: var(--t-radius) !important;
+    font-size: 12px !important;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: none !important;
+    transform: none !important;
+}
+body aside :is([class$="-logout"], .logout-item, .sidebar-logout, .logout):hover {
+    background: var(--t-gold) !important;
+    border-color: var(--t-gold) !important;
+    color: var(--t-maroon-ink) !important;
+}
+
+/* content areas fill the width under the bar */
+body :is(.admin-main, .doctor-main, .nurse-main, .patient-main, .lab-main, .pharmacist-main,
+         .bed-main, .receptionist-main) {
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 1440px;
+    margin-inline: auto !important;
+    padding-inline: clamp(18px, 3.2vw, 48px) !important;
+    padding-block: 30px 60px !important;
+    min-height: calc(100vh - var(--t-nav-h));
+    background: transparent !important;
+}
+body .receptionist-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+    min-height: calc(100vh - var(--t-nav-h)) !important;
+    background: transparent !important;
+}
+body .receptionist-layout .common-sidebar { position: sticky !important; width: 100% !important; min-width: 0 !important; height: var(--t-nav-h) !important; }
+body :is(.admin-content, .doctor-content, .bed-main-content) { padding: 0 !important; background: transparent; }
+
+/* old stand-alone top bar used on shared pages */
+body .common-navbar {
+    position: sticky; top: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    height: var(--t-nav-h);
+    padding: 0 28px;
+    background: var(--t-maroon-deep);
+    border-bottom: 3px solid var(--t-gold);
+    color: #f4e9d6;
+}
+body .common-navbar h2 { color: #fff; font-size: 18px; margin: 0; }
+body .common-navbar span { color: var(--t-gold); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
+body .navbar-left { display: flex; align-items: center; gap: 12px; }
+body .navbar-right { display: flex; align-items: center; gap: 14px; }
+body .navbar-user { display: flex; align-items: center; gap: 10px; }
+body .navbar-user-details strong { color: #fff; font-size: 13px; }
+body .navbar-avatar { background: var(--t-gold); color: var(--t-maroon-ink); }
+body .navbar-logout {
+    background: transparent; color: var(--t-gold-soft);
+    border: 1px solid rgba(243, 230, 196, .5); border-radius: var(--t-radius);
+    padding: 7px 14px; font-weight: 600; cursor: pointer;
+}
+body .navbar-logout:hover { background: var(--t-gold); color: var(--t-maroon-ink); }
+body .common-footer {
+    display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+    padding: 18px 28px; border-top: 1px solid var(--t-line);
+    background: var(--t-surface); color: var(--t-muted); font-size: 12.5px;
+}
+
+/* =====================================================================
+   2. PAGE HEADERS
+   ===================================================================== */
+body :is(.admin-header, .doctor-header, .nurse-header, .patient-header, .lab-header, .pharmacist-header,
+         .bed-header, .receptionist-header, .admin-page-header, .doctor-page-header, .lab-page-header,
+         .bed-page-header, .page-header) {
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 0 28px !important;
+    padding: 0 0 16px !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-bottom: 1px solid var(--t-line-strong) !important;
+    box-shadow: none !important;
+    position: relative;
+}
+body :is(.admin-header, .doctor-header, .nurse-header, .patient-header, .lab-header, .pharmacist-header,
+         .bed-header, .receptionist-header, .admin-page-header, .doctor-page-header, .lab-page-header,
+         .bed-page-header, .page-header)::after {
+    content: "";
+    position: absolute; left: 0; bottom: -1px;
+    width: 84px; height: 3px;
+    background: var(--t-maroon);
+}
+body :is([class$="-header"], [class$="-page-header"]) h1 {
+    margin: 0;
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 600;
+    color: var(--t-maroon-ink);
+}
+body :is([class$="-header"], [class$="-page-header"]) p {
+    margin: 6px 0 0;
+    color: var(--t-muted);
+    font-size: 14px;
+}
+body :is([class$="-label"]:not(label):not([class*="small-label"]), .page-label, .welcome-label) {
+    display: inline-block;
+    margin: 0 0 8px;
+    padding: 0;
+    background: none;
+    color: var(--t-maroon);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+}
+body :is([class$="-label"]:not(label):not([class*="small-label"]), .page-label, .welcome-label)::before {
+    content: "— ";
+    color: var(--t-gold);
+}
+
+/* user chip in the page header */
+body [class$="-user"]:not(.sidebar-user):not(.navbar-user) {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 6px 14px 6px 6px;
+    background: var(--t-surface);
+    border: 1px solid var(--t-line);
+    border-radius: var(--t-radius);
+    box-shadow: none;
+}
+body [class$="-avatar"] {
+    background: var(--t-maroon);
+    color: #fff;
+    font-weight: 700;
+    font-family: Fraunces, Georgia, serif;
+    border-radius: 50%;
+    box-shadow: none;
+}
+
+/* =====================================================================
+   3. STAT STRIP  —  one joined ledger instead of separate cards
+   ===================================================================== */
+body :is([class$="-stats"], .ward-stats, .billing-summary, .overview-grid, .beds-overview-grid,
+         .bed-stats-grid, .patient-stats-grid, .bed-summary-grid, .statistics-grid) {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+    gap: 0 !important;
+    margin: 0 0 30px !important;
+    background: var(--t-surface);
+    border: 1px solid var(--t-line-strong);
+    border-top: 4px solid var(--t-maroon);
+    border-radius: 0;
+    box-shadow: var(--t-shadow);
+}
+body :is([class$="-stat-card"], .status-overview-card, .billing-summary-card, .overview-card,
+         .beds-overview-card) {
+    position: relative;
+    display: flex; align-items: center; gap: 16px;
+    margin: 0 !important;
+    padding: 22px 24px !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-right: 1px solid var(--t-line) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+    overflow: hidden;
+}
+body :is([class$="-stat-card"], .status-overview-card, .billing-summary-card, .overview-card,
+         .beds-overview-card):last-child { border-right: 0 !important; }
+body :is([class$="-stat-card"], .status-overview-card, .billing-summary-card, .overview-card,
+         .beds-overview-card):hover { background: var(--t-hover) !important; }
+body :is([class$="-stat-icon"], .stat-icon) {
+    flex: 0 0 auto;
+    width: 46px !important; height: 46px !important;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--t-gold-soft) !important;
+    color: var(--t-maroon) !important;
+    border-radius: 50% !important;
+    box-shadow: none !important;
+    font-size: 20px;
+}
+body :is([class$="-stat-card"], .billing-summary-card, .overview-card, .status-overview-card) span {
+    display: block;
+    color: var(--t-muted);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+body :is([class$="-stat-card"], .billing-summary-card, .overview-card, .status-overview-card) :is(h2, h3, strong) {
+    display: block;
+    margin: 4px 0 2px;
+    font-family: Fraunces, Georgia, serif;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.05;
+    color: var(--t-maroon-ink);
+}
+body :is([class$="-stat-card"], .billing-summary-card, .overview-card) small {
+    display: block; color: var(--t-muted); font-size: 12px;
+}
+
+/* =====================================================================
+   4. QUICK ACTIONS  —  list rows with arrows, two columns
+   ===================================================================== */
+body :is([class$="-action-grid"], .quick-actions, [class$="-quick-grid"], .doctor-patient-actions) {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)) !important;
+    gap: 0 28px !important;
+    margin: 0 0 30px !important;
+    background: transparent;
+}
+body :is([class$="-action-card"], [class$="-quick-card"]) {
+    position: relative;
+    display: flex !important; align-items: center; gap: 16px;
+    width: 100%;
+    margin: 0 !important;
+    padding: 18px 44px 18px 6px !important;
+    text-align: left;
+    background: transparent !important;
+    color: var(--t-text);
+    border: 0 !important;
+    border-bottom: 1px solid var(--t-line) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+    cursor: pointer;
+    overflow: visible;
+}
+body :is([class$="-action-card"], [class$="-quick-card"])::after {
+    content: "→";
+    position: absolute; right: 8px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--t-gold);
+    font-size: 20px;
+    transition: transform .2s ease, color .2s;
+}
+body :is([class$="-action-card"], [class$="-quick-card"]):hover {
+    background: var(--t-hover) !important;
+}
+body :is([class$="-action-card"], [class$="-quick-card"]):hover::after {
+    transform: translate(6px, -50%);
+    color: var(--t-maroon);
+}
+body :is([class$="-action-card"], [class$="-quick-card"]) strong {
+    display: block; font-size: 15px; font-weight: 700; color: var(--t-maroon-ink);
+}
+body :is([class$="-action-card"], [class$="-quick-card"]) :is(small, p) {
+    display: block; margin: 2px 0 0; color: var(--t-muted); font-size: 12.5px;
+}
+body :is([class$="-action-icon"], .action-icon) {
+    flex: 0 0 auto;
+    width: 42px !important; height: 42px !important;
+    display: flex; align-items: center; justify-content: center;
+    background: transparent !important;
+    color: var(--t-maroon) !important;
+    border: 1px solid var(--t-line-strong);
+    border-radius: 4px !important;
+    box-shadow: none !important;
+    font-size: 18px;
+}
+body :is([class$="-action-card"], [class$="-quick-card"]) > span:first-child:not([class]) {
+    flex: 0 0 auto; width: 42px; height: 42px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--t-line-strong); border-radius: 4px;
+    font-size: 18px; color: var(--t-maroon);
+}
+
+/* Admin “responsibilities” → numbered register */
+body .responsibility-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 0 28px; counter-reset: resp;
+    border-top: 1px solid var(--t-line-strong);
+}
+body .responsibility-card {
+    counter-increment: resp;
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 18px 4px;
+    background: transparent;
+    border: 0; border-bottom: 1px solid var(--t-line);
+    border-radius: 0; box-shadow: none;
+}
+body .responsibility-card > span {
+    flex: 0 0 auto; font-size: 0 !important; width: 34px;
+}
+body .responsibility-card > span::before {
+    content: counter(resp, decimal-leading-zero);
+    font-family: Fraunces, Georgia, serif;
+    font-size: 24px; font-weight: 600; color: var(--t-gold);
+}
+body .responsibility-card strong { display: block; font-size: 15px; color: var(--t-maroon-ink); margin-bottom: 4px; }
+body .responsibility-card p { margin: 0; color: var(--t-muted); font-size: 13px; line-height: 1.55; }
+
+/* headings inside sections/cards — override per-module blue */
+body :is(.admin-section, [class$="-section"], [class$="-card"], [class$="-section-heading"], [class$="-section-header"]) :is(h2, h3) {
+    color: var(--t-maroon-ink);
+}
+body :is([class$="-section"], [class$="-card"]) :is(p, small) { color: var(--t-muted); }
+
+/* =====================================================================
+   5. HERO / WELCOME BANNERS
+   ===================================================================== */
+body :is(.lab-welcome-card, .admin-welcome, .overview-header-card, .doctor-welcome, [class$="-welcome"],
+         [class$="-welcome-card"], .consultation-patient-banner) {
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 28px;
+    padding: 28px 32px;
+    color: #f8efe0;
+    background:
+        repeating-linear-gradient(135deg, rgba(243, 230, 196, .05) 0 2px, transparent 2px 14px),
+        var(--t-maroon);
+    border: 0;
+    border-left: 8px solid var(--t-gold);
+    border-radius: 0;
+    box-shadow: none;
+}
+body :is(.lab-welcome-card, .admin-welcome, .overview-header-card, .doctor-welcome, [class$="-welcome"],
+         [class$="-welcome-card"]) :is(h1, h2, h3, strong) { color: #fff; font-weight: 600; }
+body :is(.lab-welcome-card, .admin-welcome, .overview-header-card, .doctor-welcome, [class$="-welcome"],
+         [class$="-welcome-card"]) p { color: rgba(248, 239, 224, .85); }
+
+/* =====================================================================
+   6. CONTENT CARDS & SECTIONS
+   ===================================================================== */
+body :is([class$="-table-card"], [class$="-form-card"], [class$="-filter-card"], [class$="-profile-card"],
+         .overview-note, .result-card, [class$="-prescription-card"], [class$="-admission-card"],
+         [class$="-history-card"], .allocation-card, .doctor-selection-card, .process-list-card,
+         .process-form-card, .detail-item) {
+    background: var(--t-surface);
+    border: 1px solid var(--t-line);
+    border-top: 3px solid var(--t-maroon);
+    border-radius: 0;
+    box-shadow: var(--t-shadow);
+}
+body :is([class$="-prescription-card"], [class$="-admission-card"], [class$="-history-card"],
+         .doctor-selection-card, .result-card) {
+    transition: border-color .2s, background .2s;
+}
+body :is([class$="-prescription-card"], [class$="-admission-card"], [class$="-history-card"],
+         .doctor-selection-card, .result-card):hover {
+    border-color: var(--t-gold);
+    background: var(--t-input);
+}
+body :is([class$="-section-heading"], [class$="-section-header"], [class$="-form-heading"]) :is(h2, h3) {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
+    margin-bottom: 6px;
+    font-size: 21px;
+    font-weight: 600;
+    color: var(--t-maroon-ink);
+}
+body :is([class$="-section-heading"], [class$="-section-header"], [class$="-form-heading"]) :is(h2, h3)::after {
+    content: "";
+    position: absolute; left: 0; bottom: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, var(--t-gold) 0 40px, var(--t-line) 40px 100%);
+}
+body :is([class$="-section-heading"], [class$="-section-header"]) p { margin: 4px 0 14px; color: var(--t-muted); font-size: 13.5px; }
+body .admin-section, body [class$="-section"] { margin-bottom: 30px; }
+
+/* grids that hold generic cards */
+body :is(.ward-grid, .results-grid, .patient-details-grid, .doctor-details-grid, .details-grid,
+         .specialization-grid, .doctor-selection-grid, .pharmacist-prescription-grid,
+         .patient-prescription-grid) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 18px;
+}
+
+/* =====================================================================
+   7. TABLES  —  ruled ledger look
+   ===================================================================== */
+body :is([class$="-table-card"], [class$="-table-wrapper"], [class$="-table-container"]) { overflow-x: auto; }
+body [class$="-table"], body table { border-collapse: collapse; width: 100%; }
+body [class$="-table"] th, body table th {
+    position: sticky; top: 0; z-index: 1;
+    padding: 13px 16px;
+    background: var(--t-gold-soft);
+    color: var(--t-maroon-ink);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    text-align: left;
+    border-top: 0;
+    border-bottom: 2px solid var(--t-maroon);
+}
+body [class$="-table"] td, body table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--t-line);
+    color: var(--t-text);
+    font-size: 14px;
+}
+body [class$="-table"] tbody tr:nth-child(even) td, body table tbody tr:nth-child(even) td { background: var(--t-zebra); }
+body [class$="-table"] tbody tr:hover td, body table tbody tr:hover td { background: var(--t-zebra-hover); }
+
+/* status chips → squared tags */
+body :is([class$="-status"], [class$="-badge"], .status-approved, .status-pending, .status-rejected,
+         .status-inactive, .status-default, .status-occupied) {
+    border-radius: 3px !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 4px 10px !important;
+}
+
+/* =====================================================================
+   8. BUTTONS
+   ===================================================================== */
+body :is([class$="-primary-btn"], [class$="-primary-button"], .primary-btn, .auth-button, .bed-submit,
+         [class$="-submit-button"], .dialog-confirm) {
+    background: var(--t-maroon) !important;
+    background-image: none !important;
+    color: #fff !important;
+    border: 1px solid var(--t-maroon) !important;
+    border-radius: var(--t-radius) !important;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    font-size: 12.5px;
+    box-shadow: none !important;
+    transform: none !important;
+    cursor: pointer;
+}
+body :is([class$="-primary-btn"], [class$="-primary-button"], .primary-btn, .auth-button, .bed-submit,
+         [class$="-submit-button"], .dialog-confirm):hover:not(:disabled) {
+    background: var(--t-maroon-deep) !important;
+    border-color: var(--t-maroon-deep) !important;
+    filter: none;
+}
+body :is([class$="-secondary-btn"], [class$="-secondary-button"], [class$="-outline-button"], .secondary-btn,
+         [class$="-refresh-btn"], [class$="-refresh-button"], .refresh-btn, .refresh-button,
+         [class$="-back-button"], .back-button, .back-dashboard-btn, [class$="-small-btn"],
+         .small-action-btn, .action-btn, .table-action, [class$="-view-btn"], .view-all-btn,
+         .filter-btn, .dialog-cancel, .bed-edit-btn, .bed-edit-button) {
+    border-radius: var(--t-radius) !important;
+    font-weight: 600;
+    background: transparent;
+    color: var(--t-maroon);
+    border: 1px solid var(--t-maroon);
+    transform: none !important;
+    box-shadow: none !important;
+}
+body :is([class$="-secondary-btn"], [class$="-secondary-button"], [class$="-outline-button"], .secondary-btn,
+         [class$="-refresh-btn"], [class$="-refresh-button"], .refresh-btn, .refresh-button,
+         [class$="-back-button"], .back-button, .back-dashboard-btn, [class$="-small-btn"],
+         .small-action-btn, .action-btn, .table-action, [class$="-view-btn"], .view-all-btn,
+         .filter-btn, .dialog-cancel, .bed-edit-btn, .bed-edit-button):hover:not(:disabled) {
+    background: var(--t-maroon);
+    color: #fff;
+}
+body :is(.delete-btn, .reject-btn, .deactivate-btn, [class$="-small-danger-button"]) {
+    border-radius: var(--t-radius) !important;
+    transform: none !important;
+}
+body button:focus-visible, body a:focus-visible {
+    outline: 2px solid var(--t-gold);
+    outline-offset: 2px;
+}
+
+/* =====================================================================
+   9. FORMS
+   ===================================================================== */
+body input:not([type="checkbox"]):not([type="radio"]), body select, body textarea {
+    background: var(--t-input);
+    color: var(--t-text);
+    border: 1px solid var(--t-line-strong);
+    border-radius: 4px;
+    transition: border-color .15s, background .15s;
+}
+body input:not([type="checkbox"]):not([type="radio"]):hover, body select:hover, body textarea:hover { border-color: var(--t-muted); }
+body input:not([type="checkbox"]):not([type="radio"]):focus, body select:focus, body textarea:focus {
+    outline: none;
+    background: #fff;
+    border-color: var(--t-maroon);
+    box-shadow: 0 0 0 3px var(--t-ring);
+}
+body label {
+    color: var(--t-maroon-ink);
+    font-weight: 600;
+    font-size: 12.5px;
+    letter-spacing: .03em;
+}
+body [class$="-form-grid"] {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px 22px;
+}
+body [class$="-form-grid"] .full-width, body [class$="-form-grid"] [class$="-form-actions"] { grid-column: 1 / -1; }
+body :is([class$="-search"], [class$="-search-box"], .patient-search-input) { border-radius: 4px; }
+
+/* feedback */
+body :is([class$="-error"], .error-message, [class$="-success"], .success-message) {
+    border-radius: 0 !important;
+    border-left: 4px solid currentColor;
+    font-weight: 500;
+}
+body :is([class$="-empty"], .bed-no-data, .empty-calendar) {
+    border-radius: 0;
+    border: 1px dashed var(--t-line-strong);
+    background: rgba(255, 253, 248, .7);
+    color: var(--t-muted);
+}
+body :is([class$="-spinner"], .loading-spinner) { border-top-color: var(--t-maroon); }
+body .dialog-overlay { background: rgba(58, 11, 26, .55); backdrop-filter: blur(2px); }
+body .confirm-dialog {
+    border-radius: 0; border-top: 4px solid var(--t-gold);
+    background: var(--t-surface); box-shadow: 0 24px 60px rgba(58, 11, 26, .35);
+}
+body [class$="-progress-track"] { border-radius: 0; overflow: hidden; background: var(--t-gold-soft); }
+body [class$="-progress-fill"] { background: var(--t-maroon); border-radius: 0; }
+
+/* =====================================================================
+   10. LOGIN & REGISTER  —  split screen
+   ===================================================================== */
+body .auth-page {
+    position: relative;
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 40px 20px;
+    background:
+        repeating-linear-gradient(135deg, var(--t-pattern) 0 2px, transparent 2px 16px),
+        var(--t-paper);
+}
+body .auth-card {
+    position: relative;
+    width: 100%; max-width: 470px;
+    padding: 40px 38px;
+    background: var(--t-surface);
+    border: 1px solid var(--t-line-strong);
+    border-top: 5px solid var(--t-maroon);
+    border-radius: 0;
+    box-shadow: 0 24px 50px rgba(58, 11, 26, .10);
+    animation: none;
+}
+body .auth-card.register-card { max-width: 680px; }
+body .auth-card h1 {
+    margin: 0; text-align: left;
+    font-size: 30px; font-weight: 600; color: var(--t-maroon-ink);
+}
+body .auth-card h1::before {
+    content: "T";
+    display: flex; align-items: center; justify-content: center;
+    width: 50px; height: 50px; margin: 0 0 16px;
+    border-radius: 50%;
+    border: 1.5px solid var(--t-gold);
+    background: var(--t-maroon-deep);
+    color: var(--t-gold);
+    font-family: Fraunces, Georgia, serif;
+    font-size: 26px; font-weight: 700; line-height: 1;
+    box-shadow: none;
+}
+body .auth-card h2 {
+    margin: 6px 0 26px; text-align: left;
+    font-family: "DM Sans", sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--t-maroon);
+}
+body .auth-card a { color: var(--t-maroon); font-weight: 600; }
+body .auth-card a:hover { text-decoration: underline; }
+body .auth-button { width: 100%; padding: 14px; }
+body .auth-links { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--t-line); }
+body .auth-links button {
+    background: none; border: 0; border-radius: 0; padding: 0 0 2px; cursor: pointer;
+    color: var(--t-maroon); font-weight: 600; font-size: 13px;
+    border-bottom: 1px solid var(--t-gold);
+}
+
+/* split login */
+body .auth-page.auth-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    padding: 0; gap: 0; align-items: stretch;
+}
+body .auth-hero {
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: space-between; gap: 40px;
+    padding: 56px clamp(32px, 6vw, 84px);
+    color: #f8efe0;
+    background:
+        repeating-linear-gradient(135deg, rgba(243, 230, 196, .05) 0 2px, transparent 2px 16px),
+        var(--t-maroon-deep);
+    border-right: 6px solid var(--t-gold);
+}
+body .auth-hero::after {
+    content: "T";
+    position: absolute; right: -40px; bottom: -150px;
+    font-family: Fraunces, Georgia, serif; font-weight: 700;
+    font-size: 520px; line-height: 1;
+    color: rgba(243, 230, 196, .05);
+    pointer-events: none;
+}
+body .auth-hero-brand { display: flex; align-items: center; gap: 12px; position: relative; z-index: 1; }
+body .auth-hero-brand strong { font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 600; color: #fff; }
+body .auth-hero-brand small { display: block; color: var(--t-gold); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; }
+body .auth-hero-copy { position: relative; z-index: 1; max-width: 520px; }
+body .auth-hero-copy h2 {
+    margin: 0 0 18px; color: #fff;
+    font-size: clamp(34px, 4.2vw, 54px); font-weight: 500; line-height: 1.08;
+}
+body .auth-hero-copy h2 em { color: var(--t-gold); font-style: italic; }
+body .auth-hero-copy p { margin: 0; color: rgba(248, 239, 224, .8); font-size: 16px; line-height: 1.65; max-width: 440px; }
+body .auth-hero-facts {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: repeat(3, auto); gap: 0; justify-content: start;
+    border-top: 1px solid rgba(243, 230, 196, .25); padding-top: 22px;
+}
+body .auth-hero-facts div { padding-right: 28px; margin-right: 28px; border-right: 1px solid rgba(243, 230, 196, .25); }
+body .auth-hero-facts div:last-child { border-right: 0; margin-right: 0; padding-right: 0; }
+body .auth-hero-facts b { display: block; font-family: Fraunces, Georgia, serif; font-size: 28px; font-weight: 600; color: var(--t-gold); }
+body .auth-hero-facts span { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: rgba(248, 239, 224, .75); }
+body .auth-split .auth-panel { display: flex; align-items: center; justify-content: center; padding: 40px 24px; }
+body .auth-split .auth-card { box-shadow: none; border: 0; background: transparent; padding: 0; max-width: 410px; }
+
+/* =====================================================================
+   11. EXTRA CLASSES THAT HAD NO CSS
+   ===================================================================== */
+body .bed-form { display: flex; flex-direction: column; gap: 20px; }
+body :is(.bed-form-actions, .patient-profile-actions) { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+body .bed-secondary-button { background: transparent; color: var(--t-maroon); border: 1px solid var(--t-maroon); padding: 11px 20px; cursor: pointer; }
+body .bed-success { background: #eef6ec; color: #2e6b3a; border: 1px solid #b9d8bd; padding: 13px 18px; margin-bottom: 18px; }
+body .bed-error { background: #fbeceb; color: #a1262b; border: 1px solid #efc2c2; padding: 13px 18px; margin-bottom: 18px; }
+body .patient-profile-field { display: flex; flex-direction: column; gap: 8px; }
+body .patient-empty-icon { width: 72px; height: 72px; margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; font-size: 32px; border-radius: 50%; background: var(--t-gold-soft); }
+body .appointment-person { display: flex; align-items: center; gap: 12px; }
+body .appointment-avatar { width: 38px; height: 38px; flex: 0 0 auto; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--t-maroon); color: #fff; font-weight: 700; font-size: 14px; }
+body .appointment-avatar.doctor-avatar { background: var(--t-gold); color: var(--t-maroon-ink); }
+
+/* =====================================================================
+   12. RESPONSIVE
+   ===================================================================== */
+@media (max-width: 1100px) {
+    body [class$="-form-grid"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    body aside { padding: 0 16px !important; gap: 14px; }
+    body aside :is([class$="-logo"], .sidebar-brand) span { display: none; }
+}
+@media (max-width: 860px) {
+    body .auth-page.auth-split { grid-template-columns: 1fr; }
+    body .auth-hero { padding: 32px 24px; min-height: 0; gap: 26px; border-right: 0; border-bottom: 6px solid var(--t-gold); }
+    body .auth-hero::after { display: none; }
+    body aside .sidebar-user { display: none; }
+}
+@media (max-width: 640px) {
+    body [class$="-form-grid"] { grid-template-columns: 1fr; }
+    body :is([class$="-stats"], .ward-stats, .billing-summary, .overview-grid) { grid-template-columns: 1fr !important; }
+    body :is([class$="-stat-card"], .billing-summary-card, .overview-card) { border-right: 0 !important; border-bottom: 1px solid var(--t-line) !important; }
+    body :is([class$="-action-grid"], .quick-actions, [class$="-quick-grid"]) { grid-template-columns: 1fr !important; }
+    body aside :is([class$="-logo"], .sidebar-brand) h2 { font-size: 16px !important; }
+    body aside :is([class$="-logo"], .sidebar-brand) { padding-right: 12px !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+    body *, body *::before, body *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* =====================================================================
+   13. FIXES & MODULE-SPECIFIC PATCHES
+   ===================================================================== */
+
+/* section wrappers that were white rounded cards */
+body [class$="-section"]:not(.admin-section):not(.lab-action-section):not([class*="small"]) {
+    background: var(--t-surface);
+    border: 1px solid var(--t-line);
+    border-top: 3px solid var(--t-maroon);
+    border-radius: 0;
+    box-shadow: var(--t-shadow);
+}
+/* module pages that painted their own pale-blue background */
+body :is([class$="-page"]:not(.auth-page), .admin-page, .doctor-page, .lab-page, .bed-page,
+         .bed-availability-page, .patient-lab-reports-page) {
+    background: transparent !important;
+}
+body :is([class$="-back-button"], .back-button, .back-dashboard-btn) {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 16px; margin: 0 0 16px;
+    font-size: 12.5px; letter-spacing: .04em; cursor: pointer;
+}
+body :is(.lab-action-card, .lab-action-section) { background: transparent; }
+
+/* long menus (doctor, patient): tighter, icon-less on laptop widths */
+@media (max-width: 1560px) {
+    body aside :is(.doctor-menu, .patient-nav) :is(.doctor-menu-item, button) { padding: 0 10px !important; font-size: 12.5px !important; }
+    body aside :is(.doctor-menu, .patient-nav) :is(.doctor-menu-item, button) span { display: none; }
+}
+
+/* receptionist: shared Sidebar already acts as top bar, hide the extra navbar */
+body .receptionist-content > .common-navbar { display: none; }
+
+/* receptionist dashboard uses #-level specificity — patch it explicitly */
+#root .receptionist-main .statistics-grid {
+    gap: 0 !important;
+    background: var(--t-surface);
+    border: 1px solid var(--t-line-strong);
+    border-top: 4px solid var(--t-maroon);
+}
+#root .receptionist-main .reception-stat-card {
+    min-height: 0 !important;
+    padding: 22px 24px !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-right: 1px solid var(--t-line) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+#root .receptionist-main .reception-stat-card:last-child { border-right: 0 !important; }
+#root .receptionist-main .reception-stat-card:hover { background: var(--t-hover) !important; }
+#root .receptionist-main .stat-number {
+    margin-top: 14px;
+    font-family: Fraunces, Georgia, serif;
+    font-size: 32px; font-weight: 600; line-height: 1;
+    color: var(--t-maroon-ink) !important;
+}
+#root .receptionist-main .stat-label {
+    margin-top: 6px;
+    font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--t-muted) !important;
+}
+#root .receptionist-main .stat-icon {
+    border-radius: 50% !important;
+    background: var(--t-gold-soft) !important;
+    color: var(--t-maroon) !important;
+}
+#root .receptionist-main .reception-quick-grid {
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)) !important;
+    gap: 0 28px !important;
+}
+#root .receptionist-main button.reception-action-card {
+    flex-direction: row !important;
+    align-items: center !important;
+    min-height: 0 !important;
+    padding: 16px 12px 16px 6px !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-bottom: 1px solid var(--t-line) !important;
+    border-radius: 0 !important;
+    color: var(--t-text) !important;
+}
+#root .receptionist-main button.reception-action-card:hover {
+    transform: none !important;
+    background: var(--t-hover) !important;
+    box-shadow: none !important;
+}
+#root .receptionist-main .action-icon {
+    margin: 0 14px 0 0 !important;
+    background: transparent !important;
+    border: 1px solid var(--t-line-strong) !important;
+    border-radius: 4px !important;
+}
+#root .receptionist-main .action-content { flex: 1; }
+#root .receptionist-main .action-arrow, #root .receptionist-main .stat-arrow { color: var(--t-gold) !important; }
+body .reception-action-card::after { display: none !important; }
+
+/* remaining card types */
+body :is(.staff-card, .ward-card, .staff-profile-card, .specialization-card, .selected-doctor-card,
+         .doctor-profile-card, .patient-form-card) {
+    background: var(--t-surface);
+    border: 1px solid var(--t-line);
+    border-top: 3px solid var(--t-maroon);
+    border-radius: 0;
+    box-shadow: var(--t-shadow);
+}
+body :is(.ward-card, .specialization-card):hover { border-color: var(--t-gold); background: var(--t-input); transform: none; }
+body .bed-summary-card {
+    display: flex; align-items: center; gap: 14px;
+    padding: 20px 22px;
+    background: transparent;
+    border: 0; border-right: 1px solid var(--t-line);
+    border-radius: 0; box-shadow: none; transform: none;
+}
+body .bed-summary-card:last-child { border-right: 0; }
+
+/* =====================================================================
+   14. COLOUR THEMES  (chosen from the Theme button in the dock)
+   ===================================================================== */
+html[data-palette="forest"] {
+    --t-maroon: #1f6b4f; --t-maroon-deep: #0f3a2b; --t-maroon-ink: #0b2a1f;
+    --t-gold: #b8892e; --t-gold-soft: #efe5c4;
+    --t-paper: #f3f6ee; --t-surface: #fcfdf9; --t-line: #d9e0cf; --t-line-strong: #b5c2a3;
+    --t-text: #1f2a24; --t-muted: #667568;
+    --t-hover: #edf3e0; --t-input: #f9fbf2; --t-zebra: #f6f9ef; --t-zebra-hover: #e6eed2;
+    --t-ring: rgba(31, 107, 79, .18); --t-pattern: rgba(31, 107, 79, .04);
+}
+html[data-palette="midnight"] {
+    --t-maroon: #254a8f; --t-maroon-deep: #11224a; --t-maroon-ink: #0b1633;
+    --t-gold: #5aa9e6; --t-gold-soft: #dcecf9;
+    --t-paper: #f2f5fb; --t-surface: #fdfeff; --t-line: #d6e0ee; --t-line-strong: #b0c1dc;
+    --t-text: #1c2433; --t-muted: #6a778c;
+    --t-hover: #e9f1fb; --t-input: #f6f9ff; --t-zebra: #f5f8fd; --t-zebra-hover: #dfeaf8;
+    --t-ring: rgba(37, 74, 143, .2); --t-pattern: rgba(37, 74, 143, .04);
+}
+html[data-palette="plum"] {
+    --t-maroon: #6b2c6e; --t-maroon-deep: #3a1440; --t-maroon-ink: #2a0d30;
+    --t-gold: #d98a9b; --t-gold-soft: #f7dde3;
+    --t-paper: #faf4f8; --t-surface: #fffcfe; --t-line: #ead6e3; --t-line-strong: #d0b1c6;
+    --t-text: #2b1f2c; --t-muted: #84708a;
+    --t-hover: #f7eaf2; --t-input: #fff8fc; --t-zebra: #fcf6fa; --t-zebra-hover: #f1dce9;
+    --t-ring: rgba(107, 44, 110, .18); --t-pattern: rgba(107, 44, 110, .04);
+}
